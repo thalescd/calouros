@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<!--//https://www.youtube.com/watch?v=Se5E4PbOZHc-->
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Curriculer</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link type="text/css" rel="stylesheet" href="materialize.min.css" media="screen,projection" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper grey darken-4">
+            <div class="container">
+                <a href="index.html" class="brand-logo">Curriculer</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <ul class="collapsible">
+            <li>
+                <div class="collapsible-header"><i class="material-icons">border_color</i>Cadastrar currículo</div>
+                <div class="collapsible-body"><span>
+                        <div id=divCrud class="row">
+                            <form class="col s12" id="formCreate">
+                                <div class="input-field col s12">
+                                    <input id="txtNome_" type="text" name="Nome">
+                                    <label for="txtNome_">Nome Completo*</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input id="txtEmail_" type="text" name="Email">
+                                    <label for="txtEmail_">Email*</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input id="txtCelular_" type="text" name="Celular">
+                                    <label for="txtCelular_">Celular*</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input id="txtCurso" type="text" name="Cursos">
+                                    <label for="txtCurso">Cursos</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input id="txtObjetivo" type="text" name="Objetivo">
+                                    <label for="txtObjetivo">Objetivo</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input id="txtFormacao" type="text" name="Formação">
+                                    <label for="txtFormacao">Formação</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input id="txtPortifolio" type="text" name="Portifolio">
+                                    <label for="txtPortifolio">Portifolio</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input id="txtTecnologia" type="text" name="Tecnologia">
+                                    <label for="txtTecnologia">Tecnologia</label>
+                                </div>
+                            </form>
+                            <button onclick="mainApp.Create()" class="blue darken-4 btn waves-effect waves-light"
+                                type="submit" name="action">Enviar
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </span></div>
+            </li>
+            <li class="active">
+                <div class="collapsible-header"><i class="material-icons">assignment</i>Lista de currículos</div>
+                <div class="collapsible-body">
+                    <span>
+                        <div id="divResult" class="collection"></div>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <script src='firebase.js'></script>
+    <script src='main.js'></script>
+    <script type="text/javascript" src="materialize.min.js"></script>
+    <script>
+        mainApp.Read();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems);
+        });
+    </script>
+</body>
+
+</html>

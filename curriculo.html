@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Curriculer</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper grey darken-4">
+            <div class="container">
+                <a href="index.html" class="brand-logo">Curriculer</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="divResult">
+            <ul id='ulResult' class="collection"></ul>
+        </div>
+        <div id="divNewComment" class="row">
+
+            <form id="formComment" class="col s12">
+                <h5>Fazer comentário</h5>
+                <div class="input-field col s12">
+                    <input id="txtCompetencia_" type="text" name="Competência">
+                    <label for="txtCompetencia_">Competência*</label>
+                </div>
+                <label>
+                    <input name="Tipo" type="radio" class="with-gap" value="Técnico" checked />
+                    <span>Técnico</span>
+                </label>
+                <label>
+                    <input name="Tipo" type="radio" class="with-gap" value="Comportamental" />
+                    <span>Comportamental</span>
+                </label>
+                <div class="input-field col s12">
+                    <textarea id="txtAvaliacao_" class="materialize-textarea" name="Avaliação"></textarea>
+                    <label for="txtAvaliacao_">Avaliação*</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="txtNome_" type="text" name="Nome">
+                    <label for="txtNome_">Nome do avaliador*</label>
+                </div>
+            </form>
+            <button onclick="mainApp.CreateComment()" class="blue darken-4 btn waves-effect waves-light" type="submit"
+                name="action">Enviar
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+        <ul class="collapsible">
+            <li>
+                <div class="collapsible-header">
+                    Comentários
+                    <span class="badge" id="nComments">0</span>
+                </div>
+                <div class="collapsible-body">
+                    <span>
+                        <ul class="collection" id='ulComment'></ul>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src='js/firebase.js'></script>
+    <script src='js/main.js'></script>
+    <script>
+        var url = new URLSearchParams(window.location.search);
+        var id = url.get("id");
+        mainApp.ReadById(id);
+        mainApp.ReadComment(id);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems);
+        });
+    </script>
+</body>
+
+</html>
